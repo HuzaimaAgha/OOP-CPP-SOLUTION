@@ -17,6 +17,7 @@ class Hero{
 	 		experiencePoints=experience;
 		 }
 	 	virtual void displayInfo(){
+	 		cout<<"\n-------------------------------------------------\n";
 	 		cout<<"Name: "<<heroName
 			<<"\nHero type: "<<heroType
 	 		<<"\nHealth Points: "<<healthPoints
@@ -24,9 +25,9 @@ class Hero{
 	 		<<"\nExperience Points: "<<experiencePoints<<"\n";
 		 }
 		void welcome(){
-			cout<<"Welcome to the Game!\n";
+			cout<<"Welcome to the Game! Make sure to play by the rules...\n";
 		}
-		virtual void damageCalculation(){}
+		virtual void damageCalculation()=0;
 	 	virtual void battleActions()=0;
 	 	virtual void defense()=0;
 	 	
@@ -47,16 +48,22 @@ class Warrior: public Hero{
 		}
 		void displayInfo()override{
 			Hero::displayInfo();
-			cout<<"Weapon name: "<<weapon<<
+			cout<<"\n          Warrior Special Info            \n";
+			cout<<"\nWeapon name: "<<weapon<<
 			"\nArmour type: "<<armor<<
 			"\nPhysical Power: "<<physicalPower<<
 			"\nRage Level: "<<rage<<endl;
 		}
+		void damageCalculation()override{
+			cout<<"\nDamage Calculation: "<<physicalPower-rage;
+			cout<<"\n-------------------------------------------------\n";
+			}
 		void battleActions() override{
-			cout<<"Warrior Attacks by using the weapon: "<<weapon<<endl;
+			cout<<"\nWarrior Attacks by using the weapon: "<<weapon<<endl;
 		}
 		void defense() override{
 			cout<<"Warrior defends by using physical power: "<<physicalPower<<endl;
+			
 		}
 };
 
@@ -72,15 +79,21 @@ class Mage: public Hero{
 		}
 		void displayInfo()override{
 			Hero::displayInfo();
-			cout<<"Spell name: "<<spell<<
+			cout<<"\n           Mage Special Info             \n";
+			cout<<"\nSpell name: "<<spell<<
 			"\nMana Points: "<<mana<<
 			"\nMagic Multiplier: "<<multiplier<<endl;
 		}
+			void damageCalculation()override{
+			cout<<"\nDamage calculation: "<<mana/multiplier;
+			cout<<"\n-------------------------------------------------\n";
+			}
 		void battleActions() override{
-			cout<<"Mage Attacks by using the magic spell: "<<spell<<endl;
+			cout<<"\nMage Attacks by using the magic spell: "<<spell<<endl;
 		}
 		void defense() override{
 			cout<<"Mage defends by using mana: "<<mana<<endl;
+			
 		}
 };
 
@@ -98,15 +111,21 @@ class Archer: public Hero{
 		}
 		void displayInfo()override{
 			Hero::displayInfo();
-			cout<<"Bow type: "<<bow<<
+			cout<<"\n           Archer Special Info            \n";
+			cout<<"\nBow type: "<<bow<<
 			"\nNumber of Arrows: "<<numArrow<<
 			"\nAccuracy: "<<accuracy<<endl;
 		}
+			void damageCalculation()override{
+			cout<<"\nDamage calculation: "<<numArrow-agility;
+			cout<<"\n-------------------------------------------------\n";
+			}
 		void battleActions() override{
-			cout<<"Archer Attacks by using the bow: "<<bow<<endl;
+			cout<<"\nArcher Attacks by using the bow: "<<bow<<endl;
 		}
 		void defense() override{
 			cout<<"Archer defends by using agility: "<<agility<<endl;
+			
 		}
 };
 int main(){
@@ -114,23 +133,28 @@ int main(){
 	
     Warrior w("Thor", 100, 80, 50, "Hammer", "Steel Armor", 20, 90);
     Mage m("Merlin", 80, 70, 60, "Fireball", 100, 2);
-    Archer a("Robin", 90, 75, 55, "Longbow", 30, 85.5, 70);
+Archer a("Robin", 90, 75, 55, "Longbow", 30, 85.5, 70);
+    
+    w.welcome();
 
     w.displayInfo();
     w.battleActions();
     w.defense();
+    w.damageCalculation();
 
     cout << endl;
 
     m.displayInfo();
     m.battleActions();
     m.defense();
+    m.damageCalculation();
 
     cout << endl;
 
     a.displayInfo();
     a.battleActions();
     a.defense();
+    a.damageCalculation();
 
     return 0;
 
