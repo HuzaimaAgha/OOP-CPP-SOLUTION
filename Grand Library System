@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class Library{
+	protected:
+	string title, author, id;
+	public:
+		Library(string title,string author, string id){
+			this->title=title;
+			this->author=author;
+			this->id=id;
+		}
+		virtual void display(){
+			cout<<"----------------------------------------------------\n";
+			cout<<"Title: "<<title<<"\nAuthor: "<<author<<"\nID: "<<id<<endl;
+		}
+};
+class Book: public Library{
+	int pg;
+	string genre;
+	public:
+		Book(string title,string author, string id,int pg,string genre):Library(title,author,id){
+			this->pg=pg;
+			this->genre=genre;
+		}
+		void display(){
+			Library::display();
+			cout<<"Number of Pages: "<<pg<<"\nGenre: "<<genre<<endl;
+			cout<<"----------------------------------------------------\n";
+		}
+};
+class Magazine: public Library{
+	int issueNum;
+	string month;
+	public:
+		Magazine(string title,string author, string id,int issueNum,string month):Library(title,author,id){
+			this->issueNum=issueNum;
+			this->month=month;
+		}
+		void display(){
+			Library::display();
+			cout<<"Issue Number: "<<issueNum<<"\nMonth of Publication: "<<month<<endl;
+			cout<<"----------------------------------------------------\n";
+		}
+};
+class AudioBook:public Library{
+	int duration;
+	string narrator;
+	public:
+		AudioBook(string title,string author, string id,int duration,string narrator):Library(title,author,id){
+			this->duration=duration;
+			this->narrator=narrator;
+		}
+		void display(){
+			Library::display();
+			cout<<"Duration: "<<duration<<" minutes"<<"\nNarrator Name: "<<narrator<<endl;
+			cout<<"----------------------------------------------------\n";
+		}
+};
+int main(){
+	
+	Book b1("Pride and Prejudice","Jane Austen","01",450,"classic"),b2("The Stranger","Camus","02",260,"Mystery");
+	Magazine m1("Vogue","Christian Allaire","03",25,"September"),m2("Newyork Times","xyz","05",100,"Infotainment");
+	AudioBook a1("The Godfather","Mario Puzo","06",180,"abc"), a2("Rebecca","Daphne","07",120,"xyz");
+	
+	b1.display();
+	b2.display();
+	m1.display();
+	m2.display();
+	a1.display();
+	a2.display();
+	
+	return 0;
+}
