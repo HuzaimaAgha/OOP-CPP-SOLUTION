@@ -24,11 +24,11 @@ class Hero{
 	 		<<"\nExperience Points: "<<experiencePoints<<"\n";
 		 }
 		void welcome(){
-			cout<<"Welcome!\n";
+			cout<<"Welcome to the Game!\n";
 		}
 		virtual void damageCalculation(){}
-	 	virtual void battleActions(){}
-	 	virtual void defense(){}
+	 	virtual void battleActions()=0;
+	 	virtual void defense()=0;
 	 	
 	 	
 };
@@ -111,7 +111,8 @@ class Archer: public Hero{
 };
 int main(){
 	
-Warrior w("Thor", 100, 80, 50, "Hammer", "Steel Armor", 20, 90);
+	
+    Warrior w("Thor", 100, 80, 50, "Hammer", "Steel Armor", 20, 90);
     Mage m("Merlin", 80, 70, 60, "Fireball", 100, 2);
     Archer a("Robin", 90, 75, 55, "Longbow", 30, 85.5, 70);
 
